@@ -1,0 +1,10 @@
+name: 'linkedin_pages'
+version: '0.1.0'
+config-version: 2
+require-dbt-version: ">=0.20.0"
+
+vars:
+  share_statistic: "{{ ref('stg_linkedin_pages__share_statistic') }}"
+  ugc_post_share_statistic: "{{ ref('stg_linkedin_pages__ugc_post_share_statistic') }}"
+  ugc_post_history: "{{ ref('stg_linkedin_pages__ugc_post_history') }}"
+  ugc_post_share_content_media: "{{ ref('stg_linkedin_pages__ugc_post_share_content_media') }}"
