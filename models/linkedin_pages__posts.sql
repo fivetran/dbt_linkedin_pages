@@ -30,6 +30,10 @@ joined as (
 
     select 
         share_statistic.click_count,
+        share_statistic.comment_count,
+        share_statistic.impression_count,
+        share_statistic.like_count,
+        share_statistic.share_count,
         ugc_post_share_statistic.ugc_post_id,
         ugc_post_history.post_author,
         ugc_post_history.created_timestamp,
