@@ -1,2 +1,3 @@
 packages:
-  - local: ../dbt_linkedin_pages_source
+  # - local: ../dbt_linkedin_pages_source
+  - git: "https://github.com/fivetran/dbt_linkedin_pages_source"
