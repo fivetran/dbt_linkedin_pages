@@ -40,8 +40,9 @@ joined as (
         ugc_post_history.first_published_timestamp,
         ugc_post_history.lifecycle_state,
         ugc_post_history.version_tag,
+        ugc_post_history.specific_content_share_commentary_text,
         ugc_post_share_content_media.title_text,
-        ugc_post_share_content_media.original_url,
+        ugc_post_share_content_media.original_url
     from share_statistic
     left join ugc_post_share_statistic
         on share_statistic.share_statistic_id = ugc_post_share_statistic.share_statistic_id
