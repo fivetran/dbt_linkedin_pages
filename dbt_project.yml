@@ -8,3 +8,5 @@ vars:
   ugc_post_share_statistic: "{{ ref('stg_linkedin_pages__ugc_post_share_statistic') }}"
   ugc_post_history: "{{ ref('stg_linkedin_pages__ugc_post_history') }}"
   ugc_post_share_content_media: "{{ ref('stg_linkedin_pages__ugc_post_share_content_media') }}"
+  organization: "{{ ref('stg_linkedin_pages__organization') }}"
+  organization_ugc_post: "{{ ref('stg_linkedin_pages__organization_ugc_post') }}"
