@@ -50,6 +50,7 @@ joined as (
         share_statistic.share_count,
         ugc_post_share_statistic.ugc_post_id,
         ugc_post_history.post_author,
+        ugc_post_history.post_url,
         ugc_post_history.created_timestamp,
         ugc_post_history.first_published_timestamp,
         ugc_post_history.lifecycle_state,
