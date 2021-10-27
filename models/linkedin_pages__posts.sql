@@ -1,42 +1,42 @@
 with share_statistic as (
 
     select *
-    from {{ var('share_statistic') }}
+    from {{ var('share_statistic_staging') }}
 
 ),
 
 ugc_post_share_statistic as (
 
     select *
-    from {{ var('ugc_post_share_statistic') }}
+    from {{ var('ugc_post_share_statistic_staging') }}
 
 ),
 
 ugc_post_history as (
 
     select *
-    from {{ var('ugc_post_history') }}
+    from {{ var('ugc_post_history_staging') }}
 
 ),
 
 ugc_post_share_content_media as (
 
     select *
-    from {{ var('ugc_post_share_content_media') }}
+    from {{ var('ugc_post_share_content_media_staging') }}
 
 ),
 
 organization as (
 
     select *
-    from {{ var('organization') }}
+    from {{ var('organization_staging') }}
 
 ),
 
 organization_ugc_post as (
 
     select *
-    from {{ var('organization_ugc_post') }}
+    from {{ var('organization_ugc_post_staging') }}
 
 ),
 
@@ -63,7 +63,7 @@ joined as (
     left join ugc_post_share_statistic
         on share_statistic.share_statistic_id = ugc_post_share_statistic.share_statistic_id
     left join ugc_post_history
-        on ugc_post_share_statistic.ugc_post_id = ugc_post_history.ugc_post_id
+        on cast(ugc_post_share_statistic.ugc_post_id as {{ dbt_utils.type_string() }}) = cast(ugc_post_history.ugc_post_id as {{ dbt_utils.type_string() }})
     left join ugc_post_share_content_media
         on ugc_post_history.ugc_post_id = ugc_post_share_content_media.ugc_post_id
     left join organization_ugc_post

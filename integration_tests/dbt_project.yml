@@ -1,0 +1,18 @@
+name: 'linkedin_pages_source_integration_tests'
+version: '0.1.0'
+profile: 'integration_tests'
+config-version: 2
+
+vars:
+  share_statistic: "{{ ref('linkedin_pages_share_statistic_data') }}"
+  ugc_post_share_statistic: "{{ ref('linkedin_pages_ugc_post_share_statistic_data') }}"
+  ugc_post_history: "{{ ref('linkedin_pages_ugc_post_history_data') }}"
+  ugc_post_share_content_media: "{{ ref('linkedin_pages_ugc_post_share_content_media_data') }}"
+  organization: "{{ ref('linkedin_pages_organization_data') }}"
+  organization_ugc_post: "{{ ref('linkedin_pages_organization_ugc_post_data') }}"
+
+seeds:
+  linkedin_pages_source_integration_tests:
+    linkedin_pages_ugc_post_share_statistic_data:
+      +column_types:
+        ugc_post_id: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
