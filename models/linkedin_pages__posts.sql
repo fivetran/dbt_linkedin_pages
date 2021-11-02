@@ -59,11 +59,8 @@ joined as (
         ugc_post_share_content_media.title_text,
         ugc_post_share_content_media.original_url,
         organization.organization_id,
-        organization.name_localized as organization_name
-        {{ fivetran_utils.source_relation(
-            union_schema_variable='linkedin_pages_union_schemas', 
-            union_database_variable='linkedin_pages_union_databases') 
-        }}
+        organization.name_localized as organization_name,
+        share_statistic.source_relation
     from share_statistic
     left join ugc_post_share_statistic
         on share_statistic.share_statistic_id = ugc_post_share_statistic.share_statistic_id
