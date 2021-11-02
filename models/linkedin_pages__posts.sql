@@ -60,17 +60,26 @@ joined as (
         ugc_post_share_content_media.original_url,
         organization.organization_id,
         organization.name_localized as organization_name
+        {{ fivetran_utils.source_relation(
+            union_schema_variable='linkedin_pages_union_schemas', 
+            union_database_variable='linkedin_pages_union_databases') 
+        }}
     from share_statistic
     left join ugc_post_share_statistic
         on share_statistic.share_statistic_id = ugc_post_share_statistic.share_statistic_id
+        and share_statistic.source_relation = ugc_post_share_statistic.source_relation
     left join ugc_post_history
         on cast(ugc_post_share_statistic.ugc_post_id as {{ dbt_utils.type_string() }}) = cast(ugc_post_history.ugc_post_id as {{ dbt_utils.type_string() }})
+        and ugc_post_share_statistic.source_relation = ugc_post_history.source_relation
     left join ugc_post_share_content_media
         on ugc_post_history.ugc_post_id = ugc_post_share_content_media.ugc_post_id
+        and ugc_post_history.source_relation = ugc_post_share_content_media.source_relation
     left join organization_ugc_post
         on ugc_post_history.ugc_post_id = organization_ugc_post.ugc_post_id
+        and ugc_post_history.source_relation = organization_ugc_post.source_relation
     left join organization
         on organization_ugc_post.organization_id = organization.organization_id
+        and organization_ugc_post.source_relation = organization.source_relation
 
 )
 
