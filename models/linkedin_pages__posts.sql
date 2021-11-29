@@ -9,6 +9,7 @@ ugc_post_share_statistic as (
 
     select *
     from {{ var('ugc_post_share_statistic_staging') }}
+    where is_most_recent_record = true
 
 ),
 
@@ -43,12 +44,7 @@ organization_ugc_post as (
 joined as (
 
     select 
-        share_statistic.click_count,
-        share_statistic.comment_count,
-        share_statistic.impression_count,
-        share_statistic.like_count,
-        share_statistic.share_count,
-        ugc_post_share_statistic.ugc_post_id,
+        ugc_post_history.ugc_post_id,
         ugc_post_history.post_author,
         ugc_post_history.post_url,
         ugc_post_history.created_timestamp,
@@ -59,15 +55,20 @@ joined as (
         ugc_post_share_content_media.title_text,
         ugc_post_share_content_media.original_url,
         organization.organization_id,
-        organization.name_localized as organization_name,
-        share_statistic.source_relation
-    from share_statistic
+        organization.organization_name,
+        share_statistic.click_count,
+        share_statistic.comment_count,
+        share_statistic.impression_count,
+        share_statistic.like_count,
+        share_statistic.share_count,
+        ugc_post_history.source_relation
+    from ugc_post_history
     left join ugc_post_share_statistic
-        on share_statistic.share_statistic_id = ugc_post_share_statistic.share_statistic_id
-        and share_statistic.source_relation = ugc_post_share_statistic.source_relation
-    left join ugc_post_history
         on cast(ugc_post_share_statistic.ugc_post_id as {{ dbt_utils.type_string() }}) = cast(ugc_post_history.ugc_post_id as {{ dbt_utils.type_string() }})
         and ugc_post_share_statistic.source_relation = ugc_post_history.source_relation
+    left join share_statistic
+        on share_statistic.share_statistic_id = ugc_post_share_statistic.share_statistic_id
+        and share_statistic.source_relation = ugc_post_share_statistic.source_relation
     left join ugc_post_share_content_media
         on ugc_post_history.ugc_post_id = ugc_post_share_content_media.ugc_post_id
         and ugc_post_history.source_relation = ugc_post_share_content_media.source_relation
