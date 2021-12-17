@@ -52,7 +52,7 @@ vars:
     ##You may set EITHER the schemas variables below
     linkedin_pages_union_schemas: ['linkedin_pages_one','linkedin_pages_two']
 
-    ##Or may set EITHER the databases variables below
+    ##OR you may set EITHER the databases variables below
     linkedin_pages_union_databases: ['linkedin_pages_one','linkedin_pages_two']
 ```
 ### Changing the Build Schema
@@ -72,7 +72,7 @@ models:
 
 ## Contributions
 
-Don't see a model or specific metric you would have liked to be included? Notice any bugs when installing and running the package? If so, we highly encourage and welcome contributions to this package! 
+Don't see a model or specific metric you would like to be included? Notice any bugs when installing and running the package? If so, we highly encourage and welcome contributions to this package! 
 Please create issues or open PRs against `main`. See [the Discourse post](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657) for information on how to contribute to a package.
 
 ## Database Support
