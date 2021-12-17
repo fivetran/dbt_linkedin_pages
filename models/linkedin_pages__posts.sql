@@ -8,7 +8,7 @@ with share_statistic as (
 ugc_post_share_statistic as (
 
     select *
-    from {{ var('ugc_post_share_statistic_staging') }}
+    from {{ ref('int_linkedin_pages__latest_post') }}
     where is_most_recent_record = true
 
 ),

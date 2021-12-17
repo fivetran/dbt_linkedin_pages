@@ -4,12 +4,13 @@ config-version: 2
 require-dbt-version: ">=0.20.0"
 
 vars:
-  share_statistic_staging: "{{ ref('stg_linkedin_pages__share_statistic') }}"
-  ugc_post_share_statistic_staging: "{{ ref('stg_linkedin_pages__ugc_post_share_statistic') }}"
-  ugc_post_history_staging: "{{ ref('stg_linkedin_pages__ugc_post_history') }}"
-  ugc_post_share_content_media_staging: "{{ ref('stg_linkedin_pages__ugc_post_share_content_media') }}"
-  organization_staging: "{{ ref('stg_linkedin_pages__organization') }}"
-  organization_ugc_post_staging: "{{ ref('stg_linkedin_pages__organization_ugc_post') }}"
+  linkedin_pages_source:
+    share_statistic_staging: "{{ ref('stg_linkedin_pages__share_statistic') }}"
+    ugc_post_share_statistic_staging: "{{ ref('stg_linkedin_pages__ugc_post_share_statistic') }}"
+    ugc_post_history_staging: "{{ ref('stg_linkedin_pages__ugc_post_history') }}"
+    ugc_post_share_content_media_staging: "{{ ref('stg_linkedin_pages__ugc_post_share_content_media') }}"
+    organization_staging: "{{ ref('stg_linkedin_pages__organization') }}"
+    organization_ugc_post_staging: "{{ ref('stg_linkedin_pages__organization_ugc_post') }}"
 
 models:
   linkedin_pages:
