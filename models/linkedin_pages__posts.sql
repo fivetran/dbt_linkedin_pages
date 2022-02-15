@@ -16,7 +16,8 @@ ugc_post_share_statistic as (
 ugc_post_history as (
 
     select *
-    from {{ var('ugc_post_history_staging') }}
+    from {{ ref('int_linkedin_pages__latest_post_history') }}
+    where is_most_recent_record = true
 
 ),
 
@@ -43,7 +44,7 @@ organization_ugc_post as (
 
 joined as (
 
-    select 
+    select
         ugc_post_history.ugc_post_id,
         ugc_post_history.post_author,
         ugc_post_history.post_url,
