@@ -12,6 +12,10 @@ vars:
     organization: "{{ ref('linkedin_pages_organization_data') }}"
     organization_ugc_post: "{{ ref('linkedin_pages_organization_ugc_post_data') }}"
 
+models:
+  linkedin_pages_source:
+    +materialized: table
+
 seeds:
   linkedin_pages_source_integration_tests:
     linkedin_pages_ugc_post_share_statistic_data:
