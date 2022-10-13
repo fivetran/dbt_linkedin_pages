@@ -65,7 +65,7 @@ joined as (
         ugc_post_history.source_relation
     from ugc_post_history
     left join ugc_post_share_statistic
-        on cast(ugc_post_share_statistic.ugc_post_id as {{ dbt_utils.type_string() }}) = cast(ugc_post_history.ugc_post_id as {{ dbt_utils.type_string() }})
+        on cast(ugc_post_share_statistic.ugc_post_id as {{ dbt.type_string() }}) = cast(ugc_post_history.ugc_post_id as {{ dbt.type_string() }})
         and ugc_post_share_statistic.source_relation = ugc_post_history.source_relation
     left join share_statistic
         on share_statistic.share_statistic_id = ugc_post_share_statistic.share_statistic_id
