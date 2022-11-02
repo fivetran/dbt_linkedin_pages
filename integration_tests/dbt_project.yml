@@ -4,15 +4,18 @@ profile: 'integration_tests'
 config-version: 2
 vars:
   linkedin_pages_source:
-    share_statistic: "{{ ref('linkedin_pages_share_statistic_data') }}"
-    ugc_post_share_statistic: "{{ ref('linkedin_pages_ugc_post_share_statistic_data') }}"
-    ugc_post_history: "{{ ref('linkedin_pages_ugc_post_history_data') }}"
-    ugc_post_share_content_media: "{{ ref('linkedin_pages_ugc_post_share_content_media_data') }}"
-    organization: "{{ ref('linkedin_pages_organization_data') }}"
-    organization_ugc_post: "{{ ref('linkedin_pages_organization_ugc_post_data') }}"
+    linkedin_pages_organization_identifier: "linkedin_pages_organization_data"
+    linkedin_pages_organization_ugc_post_identifier: "linkedin_pages_organization_ugc_post_data"
+    linkedin_pages_share_statistic_identifier: "linkedin_pages_share_statistic_data"
+    linkedin_pages_ugc_post_history_identifier: "linkedin_pages_ugc_post_history_data"
+    linkedin_pages_ugc_post_share_content_media_identifier: "linkedin_pages_ugc_post_share_content_media_data"
+    linkedin_pages_ugc_post_share_statistic_identifier: "linkedin_pages_ugc_post_share_statistic_data"
+    linkedin_pages_schema: linkedin_pages_integration_tests 
+  
 models:
   linkedin_pages_source:
     +materialized: table
+
 seeds:
   linkedin_pages_integration_tests:
     linkedin_pages_ugc_post_share_statistic_data:
