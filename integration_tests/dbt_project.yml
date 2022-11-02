@@ -1,4 +1,4 @@
-name: 'linkedin_pages_integration_tests_1'
+name: 'linkedin_pages_integration_tests'
 version: '0.2.0'
 profile: 'integration_tests'
 config-version: 2
@@ -17,7 +17,7 @@ models:
     +materialized: table
 
 seeds:
-  linkedin_pages_integration_tests_1:
+  linkedin_pages_integration_tests:
     linkedin_pages_ugc_post_share_statistic_data:
       +column_types:
         ugc_post_id: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
