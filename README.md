@@ -49,6 +49,7 @@ packages:
   - package: fivetran/linkedin_pages
     version: [">=0.2.0", "<0.3.0"]
 ```
+Do **NOT** include the `linked_pages_source` package in this file. The transformation package itself has a dependency on it and will install the source package as well. 
 
 ## Step 3: Configure Your Variables
 ### Database and Schema Variables
