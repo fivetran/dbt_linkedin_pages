@@ -21,13 +21,6 @@ ugc_post_history as (
 
 ),
 
-ugc_post_share_content_media as (
-
-    select *
-    from {{ var('ugc_post_share_content_media_staging') }}
-
-),
-
 organization as (
 
     select *
@@ -53,8 +46,6 @@ joined as (
         ugc_post_history.lifecycle_state,
         ugc_post_history.version_tag,
         ugc_post_history.specific_content_share_commentary_text,
-        ugc_post_share_content_media.title_text,
-        ugc_post_share_content_media.original_url,
         organization.organization_id,
         organization.organization_name,
         share_statistic.click_count,
@@ -70,9 +61,6 @@ joined as (
     left join share_statistic
         on share_statistic.share_statistic_id = ugc_post_share_statistic.share_statistic_id
         and share_statistic.source_relation = ugc_post_share_statistic.source_relation
-    left join ugc_post_share_content_media
-        on ugc_post_history.ugc_post_id = ugc_post_share_content_media.ugc_post_id
-        and ugc_post_history.source_relation = ugc_post_share_content_media.source_relation
     left join organization_ugc_post
         on ugc_post_history.ugc_post_id = organization_ugc_post.ugc_post_id
         and ugc_post_history.source_relation = organization_ugc_post.source_relation

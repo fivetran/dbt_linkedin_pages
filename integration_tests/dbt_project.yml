@@ -1,5 +1,5 @@
 name: 'linkedin_pages_integration_tests'
-version: '0.2.0'
+version: '0.3.0'
 profile: 'integration_tests'
 config-version: 2
 vars:
@@ -8,7 +8,6 @@ vars:
     linkedin_pages_organization_ugc_post_identifier: "linkedin_pages_organization_ugc_post_data"
     linkedin_pages_share_statistic_identifier: "linkedin_pages_share_statistic_data"
     linkedin_pages_ugc_post_history_identifier: "linkedin_pages_ugc_post_history_data"
-    linkedin_pages_ugc_post_share_content_media_identifier: "linkedin_pages_ugc_post_share_content_media_data"
     linkedin_pages_ugc_post_share_statistic_identifier: "linkedin_pages_ugc_post_share_statistic_data"
     linkedin_pages_schema: linkedin_pages_integration_tests_1
   
