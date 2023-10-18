@@ -21,6 +21,13 @@ ugc_post_history as (
 
 ),
 
+post_content as (
+
+    select *
+    from {{ var('post_content') }}
+
+),
+
 organization as (
 
     select *
@@ -44,9 +51,10 @@ joined as (
         ugc_post_history.created_timestamp,
         ugc_post_history.first_published_timestamp,
         ugc_post_history.lifecycle_state,
-        ugc_post_history.version_tag,
-        ugc_post_history.specific_content_share_commentary_text,
+        ugc_post_history.commentary,
         organization.organization_id,
+        coalesce(post_content.article_title, post_content.media_title) as post_title,
+        post_content.post_type,
         organization.organization_name,
         share_statistic.click_count,
         share_statistic.comment_count,
@@ -56,11 +64,14 @@ joined as (
         ugc_post_history.source_relation
     from ugc_post_history
     left join ugc_post_share_statistic
-        on cast(ugc_post_share_statistic.ugc_post_id as {{ dbt.type_string() }}) = cast(ugc_post_history.ugc_post_id as {{ dbt.type_string() }})
+        on ugc_post_share_statistic.ugc_post_id = ugc_post_history.ugc_post_id
         and ugc_post_share_statistic.source_relation = ugc_post_history.source_relation
     left join share_statistic
         on share_statistic.share_statistic_id = ugc_post_share_statistic.share_statistic_id
         and share_statistic.source_relation = ugc_post_share_statistic.source_relation
+    left join post_content
+        on ugc_post_history.ugc_post_urn = post_content.ugc_post_urn
+        and ugc_post_history.source_relation = post_content.source_relation
     left join organization_ugc_post
         on ugc_post_history.ugc_post_id = organization_ugc_post.ugc_post_id
         and ugc_post_history.source_relation = organization_ugc_post.source_relation
