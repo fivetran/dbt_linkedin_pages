@@ -11,6 +11,7 @@
 ## Features:
 - Added the following new columns to `linkedin_pages__posts`:
     - commentary
+    - post_title
     - post_type
 - Updated documentation with the updated columns.
 
