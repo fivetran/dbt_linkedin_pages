@@ -1,10 +1,23 @@
 # dbt_linkedin_pages v0.3.0
 [PR #12](https://github.com/fivetran/dbt_linkedin_pages/pull/12) includes the following breaking changes:
 ## 🚨 Breaking Changes 🚨:
-- In the Fivetran connector, the source table `ugc_post_share_content_media` was deprecated. It has been removed from the source package and use in this package.  
+- This change is made breaking due to changes in the source package, in which source `ugc_post_share_content_media` was deprecated, and source `post_content` was added. Please see the dbt_linkedin_pages_source [CHANGELOG](https://github.com/fivetran/dbt_linkedin_pages_source/blob/main/CHANGELOG.md) for full details. 
+- In this package, removed the following deprecated columns from `linkedin_pages__posts`:
+    - version_tag
+    - specific_content_share_commentary_text
+    - title_text
+    - original_url
+
+## Features:
+- Added the following new columns to `linkedin_pages__posts`:
+    - commentary
+    - post_type
+- Updated documentation with the updated columns.
+
+## Under the Hood:
+- Updated seeds to reflect the above changes. 
 
 [PR #10](https://github.com/fivetran/dbt_linkedin_pages/pull/10) includes the following updates:
-## Under the Hood:
 - Incorporated the new `fivetran_utils.drop_schemas_automation` macro into the end of each Buildkite integration test job.
 - Updated the pull request [templates](/.github).
 
