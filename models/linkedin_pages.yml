@@ -13,6 +13,8 @@ models:
         description: The total number of times the post was clicked
       - name: comment_count
         description: The total number of comments on the post
+      - name: commentary
+        description: The text content of the post
       - name: impression_count
         description: The total number of impressions on the post
       - name: like_count
@@ -23,6 +25,10 @@ models:
         description: The unique ID of the post
       - name: post_author
         description: The author of the post
+      - name: post_title
+        description: The title of the post
+      - name: post_type
+        description: The type of the post
       - name: post_url
         description: The URL of the post
       - name: created_timestamp
@@ -31,14 +37,6 @@ models:
         description: The timestamp of when the post was first published
       - name: lifecycle_state
         description: The current state of the post
-      - name: version_tag
-        description: The version tag of the post
-      - name: specific_content_share_commentary_text
-        description: The text of the post
-      - name: title_text
-        description: The title of the post
-      - name: original_url
-        description: The original URL of the post
       - name: organization_id
         description: The ID of the organization that owns the post
       - name: organization_name
