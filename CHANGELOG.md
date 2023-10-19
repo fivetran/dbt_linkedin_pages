@@ -6,16 +6,16 @@
     - Added source table `post_content` 
     - See the [May 2023 release notes](https://fivetran.com/docs/applications/linkedin-company-pages/changelog#may2023) and the [dbt_linkedin_pages_source CHANGELOG](https://github.com/fivetran/dbt_linkedin_pages_source/blob/main/CHANGELOG.md) for full details.
 - In this package, removed the following deprecated columns from `linkedin_pages__posts`:
-    - version_tag
-    - specific_content_share_commentary_text
-    - title_text
-    - original_url
+    - `version_tag`
+    - `specific_content_share_commentary_text`
+    - `title_text`
+    - `original_url`
 
 ## Features:
 - Added the following new columns to `linkedin_pages__posts`:
-    - commentary
-    - post_title
-    - post_type
+    - `commentary`
+    - `post_title`
+    - `post_type`
 - Updated documentation with the updated columns.
 
 ## Under the Hood:
