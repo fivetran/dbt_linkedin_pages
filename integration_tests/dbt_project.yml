@@ -10,7 +10,7 @@ vars:
     linkedin_pages_post_content_identifier: "linkedin_pages_post_content_data"
     linkedin_pages_ugc_post_history_identifier: "linkedin_pages_ugc_post_history_data"
     linkedin_pages_ugc_post_share_statistic_identifier: "linkedin_pages_ugc_post_share_statistic_data"
-    linkedin_pages_schema: linkedin_pages_integration_tests_1
+    linkedin_pages_schema: linkedin_pages_integration_tests_11
   
 models:
   linkedin_pages_source:
