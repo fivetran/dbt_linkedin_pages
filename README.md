@@ -1,4 +1,6 @@
-<p align="center">
+# LinkedIn Pages Modeling dbt Package ([Docs](https://fivetran.github.io/dbt_linkedin_pages/))
+
+<p align="left">
     <a alt="License"
         href="https://github.com/fivetran/dbt_linkedin_pages/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a>
@@ -9,8 +11,6 @@
     <a alt="PRs">
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
 </p>
-
-# LinkedIn Pages Modeling dbt Package ([Docs](https://fivetran.github.io/dbt_linkedin_pages/))
 
 ## What does this dbt package do?
 
