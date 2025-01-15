@@ -1,3 +1,9 @@
+# dbt_linkedin_pages version.version
+
+## Documentation
+- Added Quickstart model counts to README. ([#18](https://github.com/fivetran/dbt_linkedin_pages/pull/18))
+- Corrected references to connectors and connections in the README. ([#18](https://github.com/fivetran/dbt_linkedin_pages/pull/18))
+
 # dbt_linkedin_pages v0.3.0
 [PR #12](https://github.com/fivetran/dbt_linkedin_pages/pull/12) includes the following breaking changes:
 ## 🚨 Breaking Changes 🚨:
