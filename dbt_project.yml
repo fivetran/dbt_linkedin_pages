@@ -1,5 +1,5 @@
 name: 'linkedin_pages'
-version: '0.3.0'
+version: '1.0.0'
 config-version: 2
 require-dbt-version: [">=1.3.0", "<2.0.0"]
 vars:
@@ -13,3 +13,6 @@ models:
   linkedin_pages:
     +schema: linkedin_pages
     +materialized: table
+    staging:
+      +schema: linkedin_pages_source
+      +materialized: view
