@@ -1,20 +1,23 @@
-# LinkedIn Pages Modeling dbt Package ([Docs](https://fivetran.github.io/dbt_linkedin_pages/))
+# LinkedIn Pages dbt Package ([Docs](https://fivetran.github.io/dbt_linkedin_pages/))
 
 <p align="left">
     <a alt="License"
         href="https://github.com/fivetran/dbt_linkedin_pages/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a>
     <a alt="dbt-core">
-        <img src="https://img.shields.io/badge/dbt_Core™_version->=1.3.0_<2.0.0-orange.svg" /></a>
+        <img src="https://img.shields.io/badge/dbt_Core™_version->=1.3.0_,<2.0.0-orange.svg" /></a>
     <a alt="Maintained?">
         <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" /></a>
     <a alt="PRs">
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
+    <a alt="Fivetran Quickstart Compatible"
+        href="https://fivetran.com/docs/transformations/dbt/quickstart">
+        <img src="https://img.shields.io/badge/Fivetran_Quickstart_Compatible%3F-yes-green.svg" /></a>
 </p>
 
 ## What does this dbt package do?
 
-- Produces modeled tables that leverage LinkedIn Pages data from [Fivetran's connector](https://fivetran.com/docs/applications/linkedin-company-pages) in the format described by [this ERD](https://fivetran.com/docs/applications/linkedin-company-pages#schemainformation) and builds off the output of our [LinkedIn Pages source package](https://github.com/fivetran/dbt_linkedin_pages_source).
+- Produces modeled tables that leverage LinkedIn Pages data from [Fivetran's connector](https://fivetran.com/docs/applications/linkedin-company-pages) in the format described by [this ERD](https://fivetran.com/docs/applications/linkedin-company-pages#schemainformation).
 
 The main focus of the package is to transform the core social media object tables into analytics-ready models that can be easily unioned in to other social media platform packages to get a single view. This is especially easy using our [Social Media Reporting package](https://github.com/fivetran/dbt_social_media_reporting).
 
@@ -53,9 +56,9 @@ Include the following LinkedIn Pages package version in your `packages.yml`
 ```yaml
 packages:
   - package: fivetran/linkedin_pages
-    version: [">=0.3.0", "<0.4.0"]
+    version: [">=1.0.0", "<1.1.0"]
 ```
-Do **NOT** include the `linked_pages_source` package in this file. The transformation package itself has a dependency on it and will install the source package as well.
+> All required sources and staging models are now bundled into this transformation package. Do not include `fivetran/linkedin_pages_source` in your `packages.yml` since this package has been deprecated.
 
 ### Step 3: Configure Your Variables
 #### Database and Schema Variables
@@ -76,9 +79,9 @@ By default, this package builds the GitHub staging models within a schema titled
 ```yml
 models:
     linkedin_pages:
-      +schema: my_new_schema_name # leave blank for just the target_schema
-    linkedin_pages_source:
-      +schema: my_new_schema_name # leave blank for just the target_schema
+      +schema: my_new_schema_name # Leave +schema: blank to use the default target_schema.
+      staging:
+        +schema: my_new_schema_name # Leave +schema: blank to use the default target_schema.
 ```
 
 #### Change the Source Table References
@@ -116,12 +119,9 @@ Fivetran offers the ability for you to orchestrate your dbt project through the 
 ## Does this package have dependencies?
 This dbt package is dependent on the following dbt packages. These dependencies are installed by default within this package. For more information on the following packages, refer to the [dbt hub](https://hub.getdbt.com/) site.
 > IMPORTANT: If you have any of these dependent packages in your own `packages.yml` file, we highly recommend that you remove them from your root `packages.yml` to avoid package version conflicts.
-    
+
 ```yml
 packages:
-    - package: fivetran/linkedin_pages_source
-      version: [">=0.3.0", "<0.4.0"]
-
     - package: fivetran/fivetran_utils
       version: [">=0.4.0", "<0.5.0"]
 

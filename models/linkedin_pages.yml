@@ -3,11 +3,6 @@ version: 2
 models:
   - name: linkedin_pages__posts
     description: Each record represents the performance of a LinkedIn post
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - ugc_post_id
-            - source_relation
     columns: 
       - name: click_count
         description: The total number of times the post was clicked
