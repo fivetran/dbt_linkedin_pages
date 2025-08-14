@@ -1,7 +1,7 @@
 with share_statistic as (
 
     select *
-    from {{ var('share_statistic_staging') }}
+    from {{ ref('stg_linkedin_pages__share_statistic') }}
 
 ),
 
@@ -24,21 +24,21 @@ ugc_post_history as (
 post_content as (
 
     select *
-    from {{ var('post_content') }}
+    from {{ ref('stg_linkedin_pages__post_content') }}
 
 ),
 
 organization as (
 
     select *
-    from {{ var('organization_staging') }}
+    from {{ ref('stg_linkedin_pages__organization') }}
 
 ),
 
 organization_ugc_post as (
 
     select *
-    from {{ var('organization_ugc_post_staging') }}
+    from {{ ref('stg_linkedin_pages__organization_ugc_post') }}
 
 ),
 

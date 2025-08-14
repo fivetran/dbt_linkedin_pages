@@ -1,7 +1,7 @@
 with ugc_post_history as (
 
     select *
-    from {{ var('ugc_post_history_staging') }}
+    from {{ ref('stg_linkedin_pages__ugc_post_history') }}
 
 ), is_most_recent as (
 

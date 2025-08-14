@@ -1,7 +1,7 @@
 with ugc_post as (
 
     select *
-    from {{ var('ugc_post_share_statistic_staging') }}
+    from {{ ref('stg_linkedin_pages__ugc_post_share_statistic') }}
 
 ), is_most_recent as (
 
