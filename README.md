@@ -1,4 +1,4 @@
-# LinkedIn Pages Modeling dbt Package ([Docs](https://fivetran.github.io/dbt_linkedin_pages/))
+# LinkedIn Pages dbt Package ([Docs](https://fivetran.github.io/dbt_linkedin_pages/))
 
 <p align="left">
     <a alt="License"
