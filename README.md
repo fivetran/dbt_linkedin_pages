@@ -56,9 +56,9 @@ Include the following LinkedIn Pages package version in your `packages.yml`
 ```yaml
 packages:
   - package: fivetran/linkedin_pages
-    version: [">=0.3.0", "<0.4.0"]
+    version: [">=1.0.0", "<1.1.0"]
 ```
-> All required sources and staging models are now bundled into this transformation package. Do not include `fivetran/linkedin_source` in your `packages.yml` since this package has been deprecated.
+> All required sources and staging models are now bundled into this transformation package. Do not include `fivetran/linkedin_pages_source` in your `packages.yml` since this package has been deprecated.
 
 ### Step 3: Configure Your Variables
 #### Database and Schema Variables
@@ -78,7 +78,7 @@ By default, this package builds the GitHub staging models within a schema titled
 
 ```yml
 models:
-    linkedin:
+    linkedin_pages:
       +schema: my_new_schema_name # Leave +schema: blank to use the default target_schema.
       staging:
         +schema: my_new_schema_name # Leave +schema: blank to use the default target_schema.
@@ -122,9 +122,6 @@ This dbt package is dependent on the following dbt packages. These dependencies 
 
 ```yml
 packages:
-    - package: fivetran/linkedin_pages_source
-      version: [">=0.3.0", "<0.4.0"]
-
     - package: fivetran/fivetran_utils
       version: [">=0.4.0", "<0.5.0"]
 
