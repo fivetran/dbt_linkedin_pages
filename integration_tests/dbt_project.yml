@@ -1,5 +1,5 @@
 name: 'linkedin_pages_integration_tests'
-version: '1.0.0'
+version: '1.0.1'
 profile: 'integration_tests'
 config-version: 2
 
@@ -11,7 +11,13 @@ vars:
     linkedin_pages_post_content_identifier: "linkedin_pages_post_content_data"
     linkedin_pages_ugc_post_history_identifier: "linkedin_pages_ugc_post_history_data"
     linkedin_pages_ugc_post_share_statistic_identifier: "linkedin_pages_ugc_post_share_statistic_data"
-    linkedin_pages_schema: linkedin_pages_integration_tests_11
+    linkedin_pages_schema: linkedin_pages_integration_tests
+
+models:
+  +schema: "linkedin_pages_{{ var('directed_schema','dev') }}"
+  +persist_docs:
+    relation: true
+    columns: true
 
 seeds:
   +docs:
