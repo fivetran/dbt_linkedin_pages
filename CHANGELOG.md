@@ -1,9 +1,9 @@
 # dbt_linkedin_pages v1.0.1
 
-[PR #](https://github.com/fivetran/dbt_linkedin_pages/pull/TBD) includes the following updates:
+[PR #24](https://github.com/fivetran/dbt_linkedin_pages/pull/24) includes the following updates:
 
 ## Bug Fixes
-- Removed extra tab spacing within the `src_linkedin_pages.yml` and `stg_linkedin_pages.yml` to resolve an issue compilation error when persisting docs.
+- Removed extra tab spacing within the `src_linkedin_pages.yml` and `stg_linkedin_pages.yml` to resolve a potential error when persisting docs.
 
 # dbt_linkedin_pages v1.0.0
 
