@@ -212,7 +212,7 @@ sources:
           - name: article_source
             description: A URL of the article. Typically the URL that was ingested to maintain URL parameters. 
           - name: article_thumbnail
-            description: 	Custom or saved thumbnail for the article. If empty, there is none. 
+            description: Custom or saved thumbnail for the article. If empty, there is none. 
           - name: article_thumbnail_alt_text
             description: Alt text for the custom thumbnail. If empty, there is none. 
           - name: article_title
@@ -222,7 +222,7 @@ sources:
           - name: media_alt_text
             description: The alternative text for the media. None if empty. 
           - name: media_id
-            description: 	The id of the media.
+            description: The id of the media.
           - name: media_title
             description: The title for media. None if empty. 
           - name: multi_image_alt_text
