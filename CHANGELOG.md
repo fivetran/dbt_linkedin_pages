@@ -1,9 +1,8 @@
 # dbt_linkedin_pages v1.1.0
-
 [PR #25](https://github.com/fivetran/dbt_linkedin_pages/pull/25) includes the following updates:
 
 ## Features
-  - Increases the required dbt version upper limit to v3.0.0
+- Increases the required dbt version upper limit to v3.0.0.
 
 # dbt_linkedin_pages v1.0.1
 
