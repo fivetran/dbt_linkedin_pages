@@ -22,8 +22,8 @@ This dbt package transforms data from Fivetran's Linkedin Pages connector into a
 
 - Number of materialized models¹: 15
 - Connector documentation
-  - [Linkedin Pages connector documentation](https://fivetran.com/docs/connectors/applications/linkedin-pages)
-  - [Linkedin Pages ERD](https://fivetran.com/docs/connectors/applications/linkedin-pages#schemainformation)
+  - [Linkedin Pages connector documentation](https://fivetran.com/docs/connectors/applications/linkedin-company-pages)
+  - [Linkedin Pages ERD](https://docs.google.com/presentation/d/1PbexBiOTxplv7TlmNZ7uNo8EDT2Lr5g0Ys_ealh4qzI/edit?slide=id.g311502b468_5_443#slide=id.g311502b468_5_443)
 - dbt package documentation
   - [GitHub repository](https://github.com/fivetran/dbt_linkedin_pages)
   - [dbt Docs](https://fivetran.github.io/dbt_linkedin_pages/#!/overview)
@@ -48,11 +48,10 @@ By default, this package materializes the following final tables:
 
 | Table | Description |
 | :---- | :---- |
-| [linkedin_pages__posts](https://github.com/fivetran/dbt_linkedin_pages/blob/main/models/linkedin_pages__posts.sql) | Analyzes engagement metrics for LinkedIn posts to understand professional audience reach, interaction patterns, and content performance for your company pages. <br></br>**Example Analytics Questions:**<ul><li>Which posts drive the most engagement (clicks, likes, comments, shares) by content type or topic?</li><li>How does post performance vary by day of week or time of posting?</li><li>What types of content generate the highest reach and impression rates among your professional audience?</li></ul>|
+| [linkedin_pages__posts](https://fivetran.github.io/dbt_linkedin_pages/#!/model/model.linkedin_pages.linkedin_pages__posts) | Analyzes engagement metrics for LinkedIn posts to understand professional audience reach, interaction patterns, and content performance for your company pages. <br></br>**Example Analytics Questions:**<ul><li>Which posts drive the most engagement (clicks, likes, comments, shares) by content type or topic?</li><li>How does post performance vary by day of week or time of posting?</li><li>What types of content generate the highest reach and impression rates among your professional audience?</li></ul>|
 
 ¹ Each Quickstart transformation job run materializes these models if all components of this data model are enabled. This count includes all staging, intermediate, and final models materialized as `view`, `table`, or `incremental`.
 
----
 
 ## Prerequisites
 To use this dbt package, you must have the following:
@@ -66,7 +65,7 @@ You can either add this dbt package in the Fivetran dashboard or import it into 
 - To add the package in the Fivetran dashboard, follow our [Quickstart guide](https://fivetran.com/docs/transformations/data-models/quickstart-management).
 - To add the package to your dbt project, follow the setup instructions in the dbt package's [README file](https://github.com/fivetran/dbt_linkedin_pages/blob/main/README.md#how-do-i-use-the-dbt-package) to use this package.
 
-### Installing the Package
+### Install the Package
 Include the following LinkedIn Pages package version in your `packages.yml`
 > Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions, or [read the dbt docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
 
