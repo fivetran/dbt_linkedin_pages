@@ -12,3 +12,7 @@ destination_configurations:
 public_models: [
   "linkedin_pages__posts"
 ]
+
+table_variables:
+  _fivetran_quickstart_post_content:
+    - post_content
