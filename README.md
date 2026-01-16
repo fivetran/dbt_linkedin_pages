@@ -52,6 +52,7 @@ By default, this package materializes the following final tables:
 
 ¹ Each Quickstart transformation job run materializes these models if all components of this data model are enabled. This count includes all staging, intermediate, and final models materialized as `view`, `table`, or `incremental`.
 
+---
 
 ## Prerequisites
 To use this dbt package, you must have the following:
