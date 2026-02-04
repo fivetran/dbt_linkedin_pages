@@ -21,17 +21,42 @@ post_history as (
 
 ),
 
-post_content as (
+ugc_post_content as (
 
     select *
     from {{ ref('stg_linkedin_pages__post_content') }}
 
 ),
 
-share_content as (
+shares_content as (
 
     select *
     from {{ ref('stg_linkedin_pages__share_content') }}
+
+),
+
+-- Union UGC post content and share content
+content as (
+
+    select
+        ugc_post_urn as post_urn,
+        article_title,
+        media_title,
+        post_type as content_type,
+        source_relation,
+        'ugc' as post_type
+    from ugc_post_content
+
+    union all
+
+    select
+        share_urn as post_urn,
+        article_title,
+        media_title,
+        post_type as content_type,
+        source_relation,
+        'share' as post_type
+    from shares_content
 
 ),
 
@@ -42,24 +67,45 @@ organization as (
 
 ),
 
-organization_ugc_post as (
+ugc_organization_mapping as (
 
     select *
     from {{ ref('stg_linkedin_pages__organization_ugc_post') }}
 
 ),
 
-organization_share as (
+share_organization_mapping as (
 
     select *
     from {{ ref('stg_linkedin_pages__organization_share') }}
 
 ),
 
+-- Union organization mappings for UGC posts and shares
+organization_post as (
+
+    select
+        ugc_post_id,
+        organization_id,
+        source_relation,
+        'ugc' as post_type
+    from ugc_organization_mapping
+
+    union all
+
+    select
+        share_id as ugc_post_id,
+        organization_id,
+        source_relation,
+        'share' as post_type
+    from share_organization_mapping
+
+),
+
 joined as (
 
     select
-        post_history.post_id,
+        post_history.ugc_post_id,
         post_history.post_type,
         post_history.post_author,
         post_history.post_url,
@@ -68,13 +114,8 @@ joined as (
         post_history.lifecycle_state,
         post_history.commentary,
         organization.organization_id,
-        coalesce(
-            post_content.article_title,
-            post_content.media_title,
-            share_content.article_title,
-            share_content.media_title
-        ) as post_title,
-        coalesce(post_content.post_type, share_content.post_type) as content_type,
+        coalesce(content.article_title, content.media_title) as post_title,
+        content.content_type,
         organization.organization_name,
         share_statistic.click_count,
         share_statistic.comment_count,
@@ -86,7 +127,7 @@ joined as (
 
     -- Join post to share statistics mapping
     left join post_share_statistic
-        on post_share_statistic.post_id = post_history.post_id
+        on post_share_statistic.ugc_post_id = post_history.ugc_post_id
         and post_share_statistic.post_type = post_history.post_type
         and post_share_statistic.source_relation = post_history.source_relation
 
@@ -95,36 +136,21 @@ joined as (
         on share_statistic.share_statistic_id = post_share_statistic.statistic_id
         and share_statistic.source_relation = post_history.source_relation
 
-    -- Join UGC post content for UGC posts
-    left join post_content
-        on post_history.post_type = 'ugc'
-        and post_history.post_urn = post_content.ugc_post_urn
-        and post_history.source_relation = post_content.source_relation
+    -- Join unified content
+    left join content
+        on content.post_urn = post_history.post_urn
+        and content.post_type = post_history.post_type
+        and content.source_relation = post_history.source_relation
 
-    -- Join share content for share posts
-    left join share_content
-        on post_history.post_type = 'share'
-        and post_history.post_urn = share_content.share_urn
-        and post_history.source_relation = share_content.source_relation
+    -- Join unified organization mapping
+    left join organization_post
+        on organization_post.ugc_post_id = post_history.ugc_post_id
+        and organization_post.post_type = post_history.post_type
+        and organization_post.source_relation = post_history.source_relation
 
-    -- Join organization via UGC post mapping for UGC posts
-    left join organization_ugc_post
-        on post_history.post_type = 'ugc'
-        and post_history.post_id = organization_ugc_post.ugc_post_id
-        and post_history.source_relation = organization_ugc_post.source_relation
-
-    -- Join organization via share mapping for share posts
-    left join organization_share
-        on post_history.post_type = 'share'
-        and post_history.post_id = organization_share.share_id
-        and post_history.source_relation = organization_share.source_relation
-
-    -- Join to organization table using coalesced organization IDs
+    -- Join to organization table
     left join organization
-        on organization.organization_id = coalesce(
-            organization_ugc_post.organization_id,
-            organization_share.organization_id
-        )
+        on organization.organization_id = organization_post.organization_id
         and organization.source_relation = post_history.source_relation
 
 )

@@ -15,7 +15,7 @@ share_share_statistic as (
 ugc_posts as (
 
     select
-        ugc_post_id as post_id,
+        ugc_post_id as ugc_post_id,
         share_statistic_id as statistic_id,
         _fivetran_synced,
         source_relation,
@@ -27,7 +27,7 @@ ugc_posts as (
 share_posts as (
 
     select
-        share_id as post_id,
+        share_id as ugc_post_id,
         share_statistics_id as statistic_id,
         _fivetran_synced,
         source_relation,
@@ -48,7 +48,7 @@ is_most_recent as (
 
     select
         *,
-        row_number() over (partition by post_id, source_relation order by _fivetran_synced desc) = 1 as is_most_recent_record
+        row_number() over (partition by ugc_post_id, source_relation order by _fivetran_synced desc) = 1 as is_most_recent_record
     from unioned
 
 )

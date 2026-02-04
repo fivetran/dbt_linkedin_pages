@@ -15,7 +15,7 @@ share_history as (
 ugc_posts as (
 
     select
-        ugc_post_id as post_id,
+        ugc_post_id,
         ugc_post_urn as post_urn,
         post_author,
         commentary,
@@ -37,7 +37,7 @@ ugc_posts as (
 share_posts as (
 
     select
-        share_id as post_id,
+        share_id as ugc_post_id,
         share_urn as post_urn,
         post_author,
         commentary,
@@ -68,7 +68,7 @@ is_most_recent as (
 
     select
         *,
-        row_number() over (partition by post_id, source_relation order by last_modified_timestamp desc) = 1 as is_most_recent_record
+        row_number() over (partition by ugc_post_id, source_relation order by last_modified_timestamp desc) = 1 as is_most_recent_record
     from unioned
 
 )
