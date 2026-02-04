@@ -5,9 +5,7 @@ models:
     description: Each record represents the performance of a LinkedIn post, combining both UGC posts and shares.
     columns:
       - name: post_id
-        description: The unique ID of the post (string representation).
-      - name: post_type
-        description: The type of the post, either 'ugc' for UGC posts or 'share' for shares.
+        description: The unique ID of the post (string representation). Includes both UGC post IDs and share IDs.
       - name: post_author
         description: URN of the author of the post.
       - name: post_url
@@ -24,8 +22,8 @@ models:
         description: The ID of the organization that owns the post.
       - name: post_title
         description: The title of the post, coalesced from article or media titles.
-      - name: content_type
-        description: The type of content in the post (e.g., ARTICLE, IMAGE, POLL, TEXT).
+      - name: post_type
+        description: The type of content in the post (e.g., article, image, poll, text, multi_image).
       - name: organization_name
         description: The localized name of the organization.
       - name: click_count

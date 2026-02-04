@@ -240,7 +240,7 @@ models:
         description: The timestamp of when the record was last synced by Fivetran
       - name: share_id
         description: The ID of the share record (string representation of the integer ID).
-      - name: share_statistics_id
+      - name: share_statistic_id
         description: The ID of the share statistic record.
       - name: source_relation
         description: The source of the record, if the unioning functionality is being used.

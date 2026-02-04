@@ -29,7 +29,7 @@ final as (
     select
         _fivetran_synced,
         cast(share_id as {{ dbt.type_string() }}) as share_id,
-        share_statistics_id,
+        share_statistic_id,
         source_relation
     from fields
 )

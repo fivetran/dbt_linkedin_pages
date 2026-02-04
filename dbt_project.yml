@@ -21,6 +21,6 @@ models:
     +materialized: table
     staging:
       +schema: stg_linkedin_pages
-      +materialized: table
+      +materialized: view
       tmp:
-        +materialized: table
+        +materialized: view

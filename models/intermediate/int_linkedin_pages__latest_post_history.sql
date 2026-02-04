@@ -29,7 +29,7 @@ ugc_posts as (
         post_url,
         source_relation,
         _fivetran_synced,
-        'ugc' as post_type
+        'ugc' as content_type
     from ugc_post_history
 
 ),
@@ -51,7 +51,7 @@ share_posts as (
         post_url,
         source_relation,
         _fivetran_synced,
-        'share' as post_type
+        'share' as content_type
     from share_history
 
 ),
@@ -68,7 +68,7 @@ is_most_recent as (
 
     select
         *,
-        row_number() over (partition by ugc_post_id, source_relation order by last_modified_timestamp desc) = 1 as is_most_recent_record
+        row_number() over (partition by ugc_post_id, content_type, source_relation order by last_modified_timestamp desc) = 1 as is_most_recent_record
     from unioned
 
 )

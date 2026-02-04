@@ -20,7 +20,7 @@ This dbt package transforms data from Fivetran's Linkedin Pages connector into a
 
 ## Resources
 
-- Number of materialized models¹: 15
+- Number of materialized models¹: 23
 - Connector documentation
   - [Linkedin Pages connector documentation](https://fivetran.com/docs/connectors/applications/linkedin-company-pages)
   - [Linkedin Pages ERD](https://docs.google.com/presentation/d/1PbexBiOTxplv7TlmNZ7uNo8EDT2Lr5g0Ys_ealh4qzI/edit?slide=id.g311502b468_5_443#slide=id.g311502b468_5_443)

@@ -42,9 +42,9 @@ content as (
         ugc_post_urn as post_urn,
         article_title,
         media_title,
-        post_type as content_type,
+        post_type,
         source_relation,
-        'ugc' as post_type
+        'ugc' as content_type
     from ugc_post_content
 
     union all
@@ -53,9 +53,9 @@ content as (
         share_urn as post_urn,
         article_title,
         media_title,
-        post_type as content_type,
+        post_type,
         source_relation,
-        'share' as post_type
+        'share' as content_type
     from shares_content
 
 ),
@@ -88,7 +88,7 @@ organization_post as (
         ugc_post_id,
         organization_id,
         source_relation,
-        'ugc' as post_type
+        'ugc' as content_type
     from ugc_organization_mapping
 
     union all
@@ -97,7 +97,7 @@ organization_post as (
         share_id as ugc_post_id,
         organization_id,
         source_relation,
-        'share' as post_type
+        'share' as content_type
     from share_organization_mapping
 
 ),
@@ -106,7 +106,6 @@ joined as (
 
     select
         post_history.ugc_post_id,
-        post_history.post_type,
         post_history.post_author,
         post_history.post_url,
         post_history.created_timestamp,
@@ -115,6 +114,7 @@ joined as (
         post_history.commentary,
         organization.organization_id,
         coalesce(content.article_title, content.media_title) as post_title,
+        content.post_type,
         content.content_type,
         organization.organization_name,
         share_statistic.click_count,
@@ -128,24 +128,24 @@ joined as (
     -- Join post to share statistics mapping
     left join post_share_statistic
         on post_share_statistic.ugc_post_id = post_history.ugc_post_id
-        and post_share_statistic.post_type = post_history.post_type
+        and post_share_statistic.content_type = post_history.content_type
         and post_share_statistic.source_relation = post_history.source_relation
 
     -- Join to the shared share_statistic table
     left join share_statistic
-        on share_statistic.share_statistic_id = post_share_statistic.statistic_id
+        on share_statistic.share_statistic_id = post_share_statistic.share_statistic_id
         and share_statistic.source_relation = post_history.source_relation
 
     -- Join unified content
     left join content
         on content.post_urn = post_history.post_urn
-        and content.post_type = post_history.post_type
+        and content.content_type = post_history.content_type
         and content.source_relation = post_history.source_relation
 
     -- Join unified organization mapping
     left join organization_post
         on organization_post.ugc_post_id = post_history.ugc_post_id
-        and organization_post.post_type = post_history.post_type
+        and organization_post.content_type = post_history.content_type
         and organization_post.source_relation = post_history.source_relation
 
     -- Join to organization table

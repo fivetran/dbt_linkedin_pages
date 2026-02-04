@@ -339,5 +339,5 @@ sources:
             description: The timestamp of when the record was last synced by Fivetran
           - name: share_id
             description: The integer ID of the share record.
-          - name: share_statistics_id
+          - name: share_statistic_id
             description: The ID of the share statistic record.
