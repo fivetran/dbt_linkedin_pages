@@ -29,15 +29,7 @@ final as (
     select
         _fivetran_synced,
         organization_id,
-
-        case
-            when lower(share_id) like '%urn:li:share:%'
-                then replace(share_id, 'urn:li:share:', '')
-            when lower(share_id) like '%urn:li:ugcpost:%'
-                then replace(lower(share_id), 'urn:li:ugcpost:', '')
-            else share_id
-        end as share_id,
-
+        cast(share_id as {{ dbt.type_string() }}) as share_id,
         source_relation
     from fields
 )

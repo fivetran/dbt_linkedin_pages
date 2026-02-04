@@ -33,14 +33,9 @@ final as (
         created_actor,
         created_time as created_timestamp,
         first_published_at as first_published_timestamp,
-        cast(case when lower(id) like '%urn:li:share:%'
-                then replace(id, 'urn:li:share:', '')
-            when lower(id) like '%urn:li:ugcpost:%'
-                then replace(lower(id), 'urn:li:ugcpost:', '')
-            else id end
-            as {{ dbt.type_string() }}) as share_id,
-        id as share_urn,
-        {{ dbt.concat(["'https://www.linkedin.com/embed/feed/update/'", "id"]) }} as post_url,
+        cast(id as {{ dbt.type_string() }}) as share_id,
+        {{ dbt.concat(["'urn:li:share:'", "cast(id as " ~ dbt.type_string() ~ ")"]) }} as share_urn,
+        {{ dbt.concat(["'https://www.linkedin.com/embed/feed/update/urn:li:share:'", "cast(id as " ~ dbt.type_string() ~ ")"]) }} as post_url,
         last_modified_actor,
         last_modified_time as last_modified_timestamp,
         lifecycle_state,

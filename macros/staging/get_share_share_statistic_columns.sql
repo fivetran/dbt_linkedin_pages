@@ -1,4 +1,4 @@
-{% macro get_share_share_statistics_columns() %}
+{% macro get_share_share_statistic_columns() %}
 
 {% set columns = [
     {"name": "_fivetran_synced", "datatype": dbt.type_timestamp()},

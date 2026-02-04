@@ -11,6 +11,10 @@ vars:
     linkedin_pages_post_content_identifier: "linkedin_pages_post_content_data"
     linkedin_pages_ugc_post_history_identifier: "linkedin_pages_ugc_post_history_data"
     linkedin_pages_ugc_post_share_statistic_identifier: "linkedin_pages_ugc_post_share_statistic_data"
+    linkedin_pages_organization_share_identifier: "linkedin_pages_organization_share_data"
+    linkedin_pages_share_content_identifier: "linkedin_pages_share_content_data"
+    linkedin_pages_share_history_identifier: "linkedin_pages_share_history_data" 
+    linkedin_pages_share_share_statistic_identifier: "linkedin_pages_share_share_statistic_data" 
     linkedin_pages_schema: linkedin_pages_integration_tests
 
 models:
@@ -26,6 +30,9 @@ seeds:
     linkedin_pages_ugc_post_share_statistic_data:
       +column_types:
         ugc_post_id: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
+    linkedin_pages_share_share_statistic_data:
+      +column_types:
+        share_id: "{%- if target.type == 'bigquery' -%} INT64 {%- else -%} bigint {%- endif -%}"
 
 flags:
   send_anonymous_usage_stats: False

@@ -109,36 +109,136 @@ models:
       - name: ugc_post_urn
         description: The URN of the post record.
       - name: article_description
-        description: Custom or saved description of the article. If empty, there is none. 
+        description: Custom or saved description of the article. If empty, there is none.
       - name: article_source
-        description: A URL of the article. Typically the URL that was ingested to maintain URL parameters. 
+        description: A URL of the article. Typically the URL that was ingested to maintain URL parameters.
       - name: article_thumbnail
-        description: Custom or saved thumbnail for the article. If empty, there is none. 
+        description: Custom or saved thumbnail for the article. If empty, there is none.
       - name: article_thumbnail_alt_text
-        description: Alt text for the custom thumbnail. If empty, there is none. 
+        description: Alt text for the custom thumbnail. If empty, there is none.
       - name: article_title
-        description: Custom or saved title of the article. 
+        description: Custom or saved title of the article.
       - name: carousel_id
         description: The URN of the carousel content.
       - name: media_alt_text
-        description: The alternative text for the media. None if empty. 
+        description: The alternative text for the media. None if empty.
       - name: media_id
         description: The id of the media.
       - name: media_title
-        description: The title for media. None if empty. 
+        description: The title for media. None if empty.
       - name: multi_image_alt_text
         description: The alternate text of this thumbnail. Used for screen reader accessibility.
       - name: poll_question
         description: Question for the poll. Max length of 140 characters.
       - name: poll_settings_duration
-        description: Duration of poll being open for votes. 
+        description: Duration of poll being open for votes.
       - name: poll_settings_is_voter_visible_to_author
-        description: Poll author’s visibility to voters. Defaults to true.
+        description: Poll author's visibility to voters. Defaults to true.
       - name: poll_settings_vote_selection_type
         description: The selection type of votes on the poll. Defaults to SINGLE_VOTE.
       - name: poll_unique_voters_count
         description: Number of unique voters on the poll. Defaults to 0.
       - name: post_type
         description: The type of the post.
+      - name: source_relation
+        description: The source of the record, if the unioning functionality is being used.
+
+  - name: stg_linkedin_pages__organization_share
+    description: Mapping table between organizations and shares.
+    columns:
+      - name: _fivetran_synced
+        description: The timestamp of when the record was last synced by Fivetran
+      - name: organization_id
+        description: The ID of the organization.
+      - name: share_id
+        description: The ID of the share.
+      - name: source_relation
+        description: The source of the record, if the unioning functionality is being used.
+
+  - name: stg_linkedin_pages__share_content
+    description: Content of shares.
+    columns:
+      - name: _fivetran_synced
+        description: The timestamp of when the record was last synced by Fivetran
+      - name: _fivetran_id
+        description: The Fivetran ID of the record
+      - name: share_urn
+        description: The URN of the share record.
+      - name: article_description
+        description: Custom or saved description of the article. If empty, there is none.
+      - name: article_source
+        description: A URL of the article. Typically the URL that was ingested to maintain URL parameters.
+      - name: article_thumbnail
+        description: Custom or saved thumbnail for the article. If empty, there is none.
+      - name: article_thumbnail_alt_text
+        description: Alt text for the custom thumbnail. If empty, there is none.
+      - name: article_title
+        description: Custom or saved title of the article.
+      - name: carousel_id
+        description: The URN of the carousel content.
+      - name: media_alt_text
+        description: The alternative text for the media. None if empty.
+      - name: media_id
+        description: The id of the media.
+      - name: media_title
+        description: The title for media. None if empty.
+      - name: multi_image_alt_text
+        description: The alternate text of this thumbnail. Used for screen reader accessibility.
+      - name: poll_question
+        description: Question for the poll. Max length of 140 characters.
+      - name: poll_settings_duration
+        description: Duration of poll being open for votes.
+      - name: poll_settings_is_voter_visible_to_author
+        description: Poll author's visibility to voters. Defaults to true.
+      - name: poll_settings_vote_selection_type
+        description: The selection type of votes on the poll. Defaults to SINGLE_VOTE.
+      - name: poll_unique_voters_count
+        description: Number of unique voters on the poll. Defaults to 0.
+      - name: post_type
+        description: The type of the share.
+      - name: source_relation
+        description: The source of the record, if the unioning functionality is being used.
+
+  - name: stg_linkedin_pages__share_history
+    description: Each record represents a version of a share.
+    columns:
+      - name: _fivetran_synced
+        description: The timestamp of when the record was last synced by Fivetran
+      - name: post_author
+        description: URN of the author of this share.
+      - name: commentary
+        description: The text content of the share.
+      - name: created_actor
+        description: User who created the share.
+      - name: created_timestamp
+        description: Timestamp when the share was created.
+      - name: first_published_timestamp
+        description: The time at which this share was first published.
+      - name: share_id
+        description: Unique integer ID for this share.
+      - name: share_urn
+        description: String representation of the share ID.
+      - name: post_url
+        description: URL of the share.
+      - name: last_modified_actor
+        description: User who last modified the share.
+      - name: last_modified_timestamp
+        description: Timestamp when the share was last modified.
+      - name: lifecycle_state
+        description: The current state of the share.
+      - name: visibility
+        description: Visibility restrictions on the share.
+      - name: source_relation
+        description: The source of the record, if the unioning functionality is being used.
+
+  - name: stg_linkedin_pages__share_share_statistic
+    description: Mapping table between shares and share statistics.
+    columns:
+      - name: _fivetran_synced
+        description: The timestamp of when the record was last synced by Fivetran
+      - name: share_id
+        description: The ID of the share record.
+      - name: share_statistics_id
+        description: The ID of the share statistic record.
       - name: source_relation
         description: The source of the record, if the unioning functionality is being used.

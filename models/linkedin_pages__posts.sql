@@ -5,7 +5,7 @@ with share_statistic as (
 
 ),
 
-ugc_post_share_statistic as (
+post_share_statistic as (
 
     select *
     from {{ ref('int_linkedin_pages__latest_post') }}
@@ -13,18 +13,10 @@ ugc_post_share_statistic as (
 
 ),
 
-share_post_share_statistic as (
-
-    select *
-    from {{ ref('int_linkedin_pages__latest_share_post') }}
-    where is_most_recent_record = true
-
-),
-
 post_history as (
 
     select *
-    from {{ ref('int_linkedin_pages__latest_post_history_unioned') }}
+    from {{ ref('int_linkedin_pages__latest_post_history') }}
     where is_most_recent_record = true
 
 ),
@@ -92,24 +84,15 @@ joined as (
         post_history.source_relation
     from post_history
 
-    -- Join UGC post statistics for UGC posts
-    left join ugc_post_share_statistic
-        on post_history.post_type = 'ugc'
-        and ugc_post_share_statistic.ugc_post_id = post_history.post_id
-        and ugc_post_share_statistic.source_relation = post_history.source_relation
+    -- Join post to share statistics mapping
+    left join post_share_statistic
+        on post_share_statistic.post_id = post_history.post_id
+        and post_share_statistic.post_type = post_history.post_type
+        and post_share_statistic.source_relation = post_history.source_relation
 
-    -- Join share post statistics for share posts
-    left join share_post_share_statistic
-        on post_history.post_type = 'share'
-        and share_post_share_statistic.share_id = post_history.post_id
-        and share_post_share_statistic.source_relation = post_history.source_relation
-
-    -- Join to the shared share_statistic table using coalesced statistics IDs
+    -- Join to the shared share_statistic table
     left join share_statistic
-        on share_statistic.share_statistic_id = coalesce(
-            ugc_post_share_statistic.share_statistic_id,
-            share_post_share_statistic.share_statistics_id
-        )
+        on share_statistic.share_statistic_id = post_share_statistic.statistic_id
         and share_statistic.source_relation = post_history.source_relation
 
     -- Join UGC post content for UGC posts

@@ -11,6 +11,9 @@ vars:
     post_content: "{{ source('linkedin_pages','post_content') }}"
     organization: "{{ source('linkedin_pages','organization') }}"
     organization_ugc_post: "{{ source('linkedin_pages','organization_ugc_post') }}"
+    share_history: "{{ source('linkedin_pages','share_history') }}"
+    share_share_statistic: "{{ source('linkedin_pages','share_share_statistic') }}"
+    organization_share_post: "{{ source('linkedin_pages','organization_share_post') }}"
 
 models:
   linkedin_pages:

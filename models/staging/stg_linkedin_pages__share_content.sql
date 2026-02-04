@@ -29,7 +29,8 @@ final as (
     select
         _fivetran_id,
         _fivetran_synced,
-        share_id as share_urn,
+        cast(share_id as {{ dbt.type_string() }}) as share_id,
+        {{ dbt.concat(["'urn:li:share:'", "cast(share_id as " ~ dbt.type_string() ~ ")"]) }} as share_urn,
         article_description,
         article_source,
         article_thumbnail,

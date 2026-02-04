@@ -10,7 +10,7 @@
     {"name": "distribution_external_distribution_channels", "datatype": dbt.type_string()},
     {"name": "distribution_feed_distribution", "datatype": dbt.type_string()},
     {"name": "first_published_at", "datatype": dbt.type_timestamp()},
-    {"name": "id", "datatype": dbt.type_string()},
+    {"name": "id", "datatype": dbt.type_int()},
     {"name": "last_modified_actor", "datatype": dbt.type_string()},
     {"name": "last_modified_time", "datatype": dbt.type_timestamp()},
     {"name": "lifecycle_state", "datatype": dbt.type_string()},
