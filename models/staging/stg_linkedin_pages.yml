@@ -151,7 +151,7 @@ models:
       - name: organization_id
         description: The ID of the organization.
       - name: share_id
-        description: The ID of the share.
+        description: The ID of the share (string representation of the integer ID).
       - name: source_relation
         description: The source of the record, if the unioning functionality is being used.
 
@@ -162,8 +162,10 @@ models:
         description: The timestamp of when the record was last synced by Fivetran
       - name: _fivetran_id
         description: The Fivetran ID of the record
+      - name: share_id
+        description: The ID of the share (string representation of the integer ID).
       - name: share_urn
-        description: The URN of the share record.
+        description: The URN of the share record in the format urn:li:share:id.
       - name: article_description
         description: Custom or saved description of the article. If empty, there is none.
       - name: article_source
@@ -215,9 +217,9 @@ models:
       - name: first_published_timestamp
         description: The time at which this share was first published.
       - name: share_id
-        description: Unique integer ID for this share.
+        description: Unique ID for this share (string representation of the integer ID).
       - name: share_urn
-        description: String representation of the share ID.
+        description: The URN of the share in the format urn:li:share:id.
       - name: post_url
         description: URL of the share.
       - name: last_modified_actor
@@ -237,7 +239,7 @@ models:
       - name: _fivetran_synced
         description: The timestamp of when the record was last synced by Fivetran
       - name: share_id
-        description: The ID of the share record.
+        description: The ID of the share record (string representation of the integer ID).
       - name: share_statistics_id
         description: The ID of the share statistic record.
       - name: source_relation

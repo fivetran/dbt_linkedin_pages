@@ -1,3 +1,38 @@
+# dbt_linkedin_pages v1.3.0
+
+## Schema/Data Change
+**7 total changes • 2 possible breaking changes**
+
+| Data Model(s) | Change type | Old | New | Notes |
+| ---------- | ----------- | -------- | -------- | ----- |
+| `linkedin_pages__posts` | Modified column | `ugc_post_id` | `post_id` | **Breaking:** Column renamed to support both UGC posts and shares |
+| `linkedin_pages__posts` | Added column | - | `post_type` | Indicates whether the post is 'ugc' or 'share' |
+| `linkedin_pages__posts` | Added column | - | `content_type` | **Breaking:** The type of content in the post (ARTICLE, IMAGE, POLL, TEXT) |
+| `stg_linkedin_pages__organization_share` | New model | - | All columns | Mapping table between organizations and shares |
+| `stg_linkedin_pages__share_content` | New model | - | All columns | Content of shares (articles, images, polls, text) |
+| `stg_linkedin_pages__share_history` | New model | - | All columns | Version history of shares with metadata |
+| `stg_linkedin_pages__share_share_statistic` | New model | - | All columns | Mapping between shares and share statistics |
+
+## Feature Update
+- Extended the `linkedin_pages__posts` model to include both UGC posts and LinkedIn shares, providing a unified view of all LinkedIn Page content.
+- Added support for share-specific content types including articles, images, polls, and text posts.
+- Standardized post identifiers across UGC posts and shares for easier querying and reporting.
+
+## Under the Hood
+- Consolidated intermediate models from 5 to 2 for improved performance and maintainability:
+  - `int_linkedin_pages__latest_post_history` now unions both UGC posts and shares
+  - `int_linkedin_pages__latest_post` now unions both UGC post statistics and share statistics
+  - Removed redundant models: `int_linkedin_pages__post_history_unioned`, `int_linkedin_pages__latest_post_history_unioned`, `int_linkedin_pages__latest_share_post`
+- Added 4 new source tables to support LinkedIn shares:
+  - `organization_share`: Mapping between organizations and shares
+  - `share_content`: Content details of shares
+  - `share_history`: Version history of shares
+  - `share_share_statistic`: Mapping between shares and statistics
+- Added corresponding staging models and get_columns macros for all new sources.
+- Updated seed data to include test records for share-related tables.
+- Share IDs are stored as integers in source tables and cast to strings in staging models for consistency with UGC post IDs.
+- Share URNs are formatted as `urn:li:share:id` for proper LinkedIn API compatibility.
+
 # dbt_linkedin_pages v1.2.0
 
 [PR #26](https://github.com/fivetran/dbt_linkedin_pages/pull/26) includes the following updates:

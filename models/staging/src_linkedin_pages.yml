@@ -249,7 +249,7 @@ sources:
           - name: organization_id
             description: The ID of the organization.
           - name: share_id
-            description: The ID of the share.
+            description: The integer ID of the share.
 
       - name: share_content
         identifier: "{{ var('linkedin_pages_share_content_identifier', 'share_content')}}"
@@ -260,7 +260,7 @@ sources:
           - name: _fivetran_id
             description: The Fivetran ID of the record
           - name: share_id
-            description: The ID of the share record.
+            description: The integer ID of the share record.
           - name: article_description
             description: Custom or saved description of the article. If empty, there is none.
           - name: article_source
@@ -338,6 +338,6 @@ sources:
           - name: _fivetran_synced
             description: The timestamp of when the record was last synced by Fivetran
           - name: share_id
-            description: The ID of the share record.
+            description: The integer ID of the share record.
           - name: share_statistics_id
             description: The ID of the share statistic record.
