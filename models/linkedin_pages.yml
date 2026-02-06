@@ -24,6 +24,8 @@ models:
         description: The title of the post, coalesced from article or media titles.
       - name: post_type
         description: The type of content in the post (e.g., article, image, poll, text, multi_image).
+      - name: content_type
+        description: Indicates whether the post is from 'ugc' (UGC post) or 'share' (LinkedIn share).
       - name: organization_name
         description: The localized name of the organization.
       - name: click_count

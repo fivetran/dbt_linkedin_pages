@@ -41,8 +41,8 @@ final as (
         lifecycle_state,
         visibility,
         source_relation
-
     from fields
 )
 
-select * from final
+select * 
+from final

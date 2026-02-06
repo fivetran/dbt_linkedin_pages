@@ -14,7 +14,7 @@
 | `stg_linkedin_pages__share_share_statistic` | New model | - | All columns | Mapping between shares and share statistics. |
 
 ## Under the Hood 
-- Updated seed data to include test records for share-related tables.
+- Added seed files for new LinkedIn data sources, as well as designed column types to ensure no data type confusion errors. 
 - Share URNs are formatted downstream with the `urn:li:share:<id>` format to ensure Linkedin URLs properly link to social share posts.
 - Added consistency test to compare `linkedin_pages__posts`.
 
