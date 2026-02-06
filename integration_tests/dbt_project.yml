@@ -42,6 +42,7 @@ seeds:
     linkedin_pages_ugc_post_history_data:
       +column_types:
         created_time: "{%- if target.type == 'bigquery' -%} TIMESTAMP {%- elif target.type == 'databricks' -%} timestamp {%- else -%} timestamp {%- endif -%}"
+        _fivetran_synced: "{%- if target.type == 'bigquery' -%} TIMESTAMP {%- elif target.type == 'databricks' -%} timestamp {%- else -%} timestamp {%- endif -%}"
         first_published_at: "{%- if target.type == 'bigquery' -%} TIMESTAMP {%- elif target.type == 'databricks' -%} timestamp {%- else -%} timestamp {%- endif -%}"
         last_modified_time: "{%- if target.type == 'bigquery' -%} TIMESTAMP {%- elif target.type == 'databricks' -%} timestamp {%- else -%} timestamp {%- endif -%}"
         author: "{%- if target.type == 'bigquery' -%} STRING {%- elif target.type == 'databricks' -%} string {%- else -%} varchar {%- endif -%}"
