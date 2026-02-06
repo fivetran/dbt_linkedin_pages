@@ -1,5 +1,7 @@
 # dbt_linkedin_pages v1.3.0
 
+[PR #27](https://github.com/fivetran/dbt_linkedin_pages/pull/27) includes the following updates:
+
 ## Schema/Data Change **(--full-refresh required after upgrading)**
 **18 total changes • 12 of which are breaking in the form of materialization updates**
 
