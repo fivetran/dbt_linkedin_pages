@@ -11,10 +11,10 @@
 | `linkedin_pages__posts` | Renamed column | `ugc_post_id` | `post_id` | **Breaking:** Column renamed to reflect that the model now includes both UGC posts and shares. |
 | `linkedin_pages__posts` | Data expansion | UGC posts only | UGC posts + shares | Model now includes both UGC posts and LinkedIn shares. |
 | `linkedin_pages__posts` | Added column | - | `content_type` | Indicates whether the post is from 'ugc' (UGC post) or 'share' (LinkedIn share). |
-| `stg_linkedin_pages__organization_share` | New model | - | All columns | Mapping table between organizations and shares. |
-| `stg_linkedin_pages__share_content` | New model | - | All columns | Content of shares (articles, images, polls, text). |
-| `stg_linkedin_pages__share_history` | New model | - | All columns | Version history of shares with metadata. |
-| `stg_linkedin_pages__share_share_statistic` | New model | - | All columns | Mapping between shares and share statistics. |
+| `stg_linkedin_pages__organization_share` | New model | | | Mapping table between organizations and shares. |
+| `stg_linkedin_pages__share_content` | New model | | | Content of shares (articles, images, polls, text). |
+| `stg_linkedin_pages__share_history` | New model | | | Version history of shares with metadata. |
+| `stg_linkedin_pages__share_share_statistic` | | | All columns | Mapping between shares and share statistics. |
 
 ## Under the Hood 
 - Added seed files for new LinkedIn data sources, as well as designed column types to ensure no data type confusion errors. 
