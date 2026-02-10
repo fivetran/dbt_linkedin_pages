@@ -15,7 +15,7 @@ share_history as (
 ugc_posts as (
 
     select
-        ugc_post_id,
+        ugc_post_id as post_id,
         ugc_post_urn as post_urn,
         post_author,
         commentary,
@@ -37,7 +37,7 @@ ugc_posts as (
 share_posts as (
 
     select
-        share_id as ugc_post_id,
+        share_id as post_id,
         share_urn as post_urn,
         post_author,
         commentary,

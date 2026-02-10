@@ -85,7 +85,7 @@ share_organization_mapping as (
 organization_post as (
 
     select
-        ugc_post_id,
+        ugc_post_id as post_id,
         organization_id,
         source_relation,
         'ugc' as content_type
@@ -94,7 +94,7 @@ organization_post as (
     union all
 
     select
-        share_id as ugc_post_id,
+        share_id as post_id,
         organization_id,
         source_relation,
         'share' as content_type
@@ -105,7 +105,7 @@ organization_post as (
 joined as (
 
     select
-        post_history.ugc_post_id,
+        post_history.post_id,
         post_history.post_author,
         post_history.post_url,
         post_history.created_timestamp,
@@ -127,7 +127,7 @@ joined as (
 
     -- Join post to share statistics mapping
     left join post_share_statistic
-        on post_share_statistic.ugc_post_id = post_history.ugc_post_id
+        on post_share_statistic.post_id = post_history.post_id
         and post_share_statistic.content_type = post_history.content_type
         and post_share_statistic.source_relation = post_history.source_relation
 
@@ -144,7 +144,7 @@ joined as (
 
     -- Join unified organization mapping
     left join organization_post
-        on organization_post.ugc_post_id = post_history.ugc_post_id
+        on organization_post.post_id = post_history.post_id
         and organization_post.content_type = post_history.content_type
         and organization_post.source_relation = post_history.source_relation
 

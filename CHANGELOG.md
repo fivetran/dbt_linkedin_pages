@@ -3,11 +3,12 @@
 [PR #27](https://github.com/fivetran/dbt_linkedin_pages/pull/27) includes the following updates:
 
 ## Schema/Data Change **(--full-refresh required after upgrading)**
-**18 total changes • 12 of which are breaking in the form of materialization updates**
+**19 total changes • 13 of which are breaking in the form of materialization updates**
 
 | Data Model(s) | Change type | Old | New | Notes |
 | ---------- | ----------- | -------- | -------- | ----- |
-| [stg_*](https://github.com/fivetran/dbt_linkedin_pages/tree/main/models/staging) (all 12 original staging models and tmp models) | Materialization | Table | View | **Breaking:** These staging models are now views. Upon full refresh, the package will automatically drop the tables and recreate them as views. However, we recommend reviewing your schema and manually dropping any remaining staging models materialized as tables as they will no longer be updated in favor of the materialized views. |
+| `stg_linkedin_pages__organization`<br>`stg_linkedin_pages__organization_ugc_post`<br>`stg_linkedin_pages__post_content`<br>`stg_linkedin_pages__share_statistic`<br>`stg_linkedin_pages__ugc_post_history`<br>`stg_linkedin_pages__ugc_post_share_statistic`<br>(as well as the upstream tmp models for each model) | Materialization | Table | View | **Breaking:** These staging models are now views. Upon full refresh, the package will automatically drop the tables and recreate them as views. However, we recommend reviewing your schema and manually dropping any remaining staging models materialized as tables as they will no longer be updated in favor of the materialized views. |
+| `linkedin_pages__posts` | Renamed column | `ugc_post_id` | `post_id` | **Breaking:** Column renamed to reflect that the model now includes both UGC posts and shares. |
 | `linkedin_pages__posts` | Data expansion | UGC posts only | UGC posts + shares | Model now includes both UGC posts and LinkedIn shares. |
 | `linkedin_pages__posts` | Added column | - | `content_type` | Indicates whether the post is from 'ugc' (UGC post) or 'share' (LinkedIn share). |
 | `stg_linkedin_pages__organization_share` | New model | - | All columns | Mapping table between organizations and shares. |

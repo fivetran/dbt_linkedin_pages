@@ -15,7 +15,7 @@ share_share_statistic as (
 ugc_posts as (
 
     select
-        ugc_post_id as ugc_post_id,
+        ugc_post_id as post_id,
         share_statistic_id,
         _fivetran_synced,
         source_relation,
@@ -27,7 +27,7 @@ ugc_posts as (
 share_posts as (
 
     select
-        share_id as ugc_post_id,
+        share_id as post_id,
         share_statistic_id,
         _fivetran_synced,
         source_relation,
