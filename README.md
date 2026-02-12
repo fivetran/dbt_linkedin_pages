@@ -20,7 +20,7 @@ This dbt package transforms data from Fivetran's Linkedin Pages connector into a
 
 ## Resources
 
-- Number of materialized models¹: 15
+- Number of materialized models¹: 23
 - Connector documentation
   - [Linkedin Pages connector documentation](https://fivetran.com/docs/connectors/applications/linkedin-company-pages)
   - [Linkedin Pages ERD](https://docs.google.com/presentation/d/1PbexBiOTxplv7TlmNZ7uNo8EDT2Lr5g0Ys_ealh4qzI/edit?slide=id.g311502b468_5_443#slide=id.g311502b468_5_443)
@@ -75,7 +75,7 @@ Include the following LinkedIn Pages package version in your `packages.yml`
 ```yaml
 packages:
   - package: fivetran/linkedin_pages
-    version: [">=1.2.0", "<1.3.0"]
+    version: [">=1.3.0", "<1.4.0"]
 ```
 > All required sources and staging models are now bundled into this transformation package. Do not include `fivetran/linkedin_pages_source` in your `packages.yml` since this package has been deprecated.
 
