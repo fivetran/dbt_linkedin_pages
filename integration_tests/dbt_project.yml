@@ -21,7 +21,7 @@ models:
   +schema: "linkedin_pages_{{ var('directed_schema','dev') }}"
   +persist_docs:
     relation: true
-    columns: true
+    columns: "{{ false if target.type in ('databricks') else true }}"
 
 seeds:
   +docs:
