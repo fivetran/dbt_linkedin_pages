@@ -1,5 +1,3 @@
---depends_on: {{ var('organization') }}
-
 {% if var('linkedin_pages_union_schemas', []) | length > 0 or var('linkedin_pages_union_databases', []) | length > 0 %}
 
 {{
