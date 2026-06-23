@@ -7,6 +7,7 @@ sources:
     loader: Fivetran
     config:
       loaded_at_field: _fivetran_synced
+      enabled: "{{ var('linkedin_pages_sources', []) == [] }}"
     tables:
       - name: share_statistic
         identifier: "{{ var('linkedin_pages_share_statistic_identifier', 'share_statistic')}}"

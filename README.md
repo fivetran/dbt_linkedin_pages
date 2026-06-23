@@ -1,14 +1,14 @@
 <!--section="linkedin-pages_transformation_model"-->
-# Linkedin Pages dbt Package
+# LinkedIn Pages dbt Package
 
-This dbt package transforms data from Fivetran's Linkedin Pages connector into analytics-ready tables.
+This dbt package transforms data from Fivetran's LinkedIn Pages connector into analytics-ready tables.
 
 ## Resources
 
 - Number of materialized models¹: 23
 - Connector documentation
-  - [Linkedin Pages connector documentation](https://fivetran.com/docs/connectors/applications/linkedin-company-pages)
-  - [Linkedin Pages ERD](https://docs.google.com/presentation/d/1PbexBiOTxplv7TlmNZ7uNo8EDT2Lr5g0Ys_ealh4qzI/edit?slide=id.g311502b468_5_443#slide=id.g311502b468_5_443)
+  - [LinkedIn Pages connector documentation](https://fivetran.com/docs/connectors/applications/linkedin-company-pages)
+  - [LinkedIn Pages ERD](https://docs.google.com/presentation/d/1PbexBiOTxplv7TlmNZ7uNo8EDT2Lr5g0Ys_ealh4qzI/edit?slide=id.g311502b468_5_443#slide=id.g311502b468_5_443)
 - dbt package documentation
   - [GitHub repository](https://github.com/fivetran/dbt_linkedin_pages)
   - [dbt Docs](https://fivetran.github.io/dbt_linkedin_pages/#!/overview)
@@ -44,7 +44,7 @@ By default, this package materializes the following final tables:
 ## Prerequisites
 To use this dbt package, you must have the following:
 
-- At least one Fivetran Linkedin Pages connection syncing data into your destination.
+- At least one Fivetran LinkedIn Pages connection syncing data into your destination.
 - A BigQuery, Snowflake, Redshift, PostgreSQL, or Databricks destination.
 
 ## How do I use the dbt package?
@@ -62,7 +62,7 @@ Include the following LinkedIn Pages package version in your `packages.yml`
 ```yaml
 packages:
   - package: fivetran/linkedin_pages
-    version: [">=1.3.0", "<1.4.0"]
+    version: [">=1.4.0", "<1.5.0"]
 ```
 > All required sources and staging models are now bundled into this transformation package. Do not include `fivetran/linkedin_pages_source` in your `packages.yml` since this package has been deprecated.
 
@@ -74,15 +74,41 @@ dispatch:
     search_order: ['spark_utils', 'dbt_utils']
 ```
 
-### Configure Your Variables
-#### Database and Schema Variables
-By default, this package will run using your target database and the `linkedin_pages` schema. If this is not where your LinkedIn Pages data is, please add the following configuration to your `dbt_project.yml` file:
+### Define database and schema variables
+#### Option A: Single connection
+By default, this package runs using your destination and the `linkedin_pages` schema. If this is not where your LinkedIn Pages data is (for example, if your LinkedIn Pages schema is named `linkedin_pages_fivetran`), add the following configuration to your root `dbt_project.yml` file:
 
 ```yml
 vars:
+    linkedin_pages_database: your_destination_name
     linkedin_pages_schema: your_schema_name
-    linkedin_pages_database: your_database_name 
 ```
+
+#### Option B: Union multiple connections
+If you have multiple LinkedIn Pages connections in Fivetran and would like to use this package on all of them simultaneously, we have provided functionality to do so. For each source table, the package will union all of the data together and pass the unioned table into the transformations. The `source_relation` column in each model indicates the origin of each record.
+
+To use this functionality, you will need to set the `linkedin_pages_sources` variable in your root `dbt_project.yml` file:
+
+```yml
+# dbt_project.yml
+
+vars:
+  linkedin_pages:
+    linkedin_pages_sources:
+      - database: connection_1_destination_name # Required
+        schema: connection_1_schema_name # Required
+        name: connection_1_source_name # Required only if following the step in the following subsection
+
+      - database: connection_2_destination_name
+        schema: connection_2_schema_name
+        name: connection_2_source_name
+```
+
+> Previous versions of this package employed two separate, mutually exclusive variables for unioning: `linkedin_pages_union_schemas` and `linkedin_pages_union_databases`. While these variables are still supported, `linkedin_pages_sources` is the recommended variable to configure.
+
+#### Optional: Incorporate unioned sources into DAG
+
+If you use [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt#transformationsfordbtcore) and are unioning multiple LinkedIn Pages connections, you can define your sources in a property `.yml` file, [using this as a template](https://github.com/fivetran/dbt_linkedin_pages/blob/main/models/staging/src_linkedin_pages.yml). Set the variable `has_defined_sources: true` under the LinkedIn Pages namespace in your `dbt_project.yml`. Otherwise, your LinkedIn Pages connections won't appear in your DAG. See the `union_connections` macro [documentation](https://github.com/fivetran/dbt_fivetran_utils/tree/releases/v0.4.latest#optional-union-connections-defined-sources-configuration) for full configuration details.
 
 ### (Optional) Additional Configurations
 <details><summary>Expand for configurations</summary>
@@ -107,19 +133,12 @@ vars:
     <package_name>__<default_source_table_name>_identifier: your_table_name
 ```
 
-#### Unioning Multiple LinkedIn Pages Connections
-If you have multiple LinkedIn Pages connections in Fivetran and would like to use this package on all of them simultaneously, we have provided functionality to do so. The package will union all of the data together and pass the unioned table(s) into the final models. You will be able to see which source it came from in the `source_relation` column(s) of each model. To use this functionality, you will need to set either (**note that you cannot use both**) the `union_schemas` or `union_databases` variables:
+#### Source casing for case-sensitive destinations
+By default, the package applies case-insensitive comparisons when resolving `source_relation` values. If your destination is case-sensitive and you want downstream transformations to respect the exact casing of your source database and schema names, set the following variable:
 
 ```yml
-# dbt_project.yml
-...
-config-version: 2
 vars:
-    ##You may set EITHER the schemas variables below
-    linkedin_pages_union_schemas: ['linkedin_pages_one','linkedin_pages_two']
-
-    ##OR you may set EITHER the databases variables below
-    linkedin_pages_union_databases: ['linkedin_pages_one','linkedin_pages_two']
+    fivetran_using_source_casing: true
 ```
 
 </details>
