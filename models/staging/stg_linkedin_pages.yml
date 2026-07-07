@@ -64,8 +64,6 @@ models:
         description: Urn of the author of this content.
       - name: commentary
         description: The text content of the post. 
-      - name: created_actor
-        description: User who created the content.
       - name: created_timestamp
         description: Timestamp when the content was created.
       - name: first_published_timestamp
@@ -74,8 +72,6 @@ models:
         description: Unique id for this object.
       - name: ugc_post_urn
         description: URN of the post.
-      - name: last_modified_actor
-        description: User who last modified the content.
       - name: last_modified_timestamp
         description: Timestamp when the content was last modified.
       - name: post_url

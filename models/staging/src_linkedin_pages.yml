@@ -57,8 +57,6 @@ sources:
             description: The text content of the post. 
           - name: container_entity
             description: Urn of container entity that contains the user generated content such as a Group or a Story.
-          - name: created_actor
-            description: User who created the content.
           - name: created_time
             description: Timestamp when the content was created.
           - name: distribution_external_distribution_channels
@@ -69,8 +67,6 @@ sources:
             description: The time at which this content was first published.
           - name: id
             description: Unique id for this object.
-          - name: last_modified_actor
-            description: User who last modified the content.
           - name: last_modified_time
             description: Timestamp when the content was last modified.
           - name: lifecycle_state

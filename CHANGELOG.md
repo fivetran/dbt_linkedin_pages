@@ -1,3 +1,14 @@
+# dbt_linkedin_pages v1.5.0
+
+[PR #32](https://github.com/fivetran/dbt_linkedin_pages/pull/32) includes the following updates:
+
+## Schema/Data Change
+**6 total changes • 6 possible breaking changes**
+
+| Data Model(s) | Change type | Old | New | Notes |
+| ------------- | ----------- | --- | --- | ----- |
+| `stg_linkedin_pages__share_history`<br>`stg_linkedin_pages__ugc_post_history`<br>`int_linkedin_pages__latest_post_history` | Removed columns | `created_actor` <br> `last_modified_actor` | | Deprecated by LinkedIn. No replacement. | 
+
 # dbt_linkedin_pages v1.4.0
 
 [PR #31](https://github.com/fivetran/dbt_linkedin_pages/pull/31) includes the following updates:
