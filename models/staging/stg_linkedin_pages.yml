@@ -210,8 +210,6 @@ models:
         description: URN of the author of this share.
       - name: commentary
         description: The text content of the share.
-      - name: created_actor
-        description: User who created the share.
       - name: created_timestamp
         description: Timestamp when the share was created.
       - name: first_published_timestamp
@@ -222,8 +220,6 @@ models:
         description: The URN of the share in the format urn:li:share:id.
       - name: post_url
         description: URL of the share.
-      - name: last_modified_actor
-        description: User who last modified the share.
       - name: last_modified_timestamp
         description: Timestamp when the share was last modified.
       - name: lifecycle_state

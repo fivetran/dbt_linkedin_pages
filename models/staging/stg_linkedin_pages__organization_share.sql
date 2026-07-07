@@ -30,5 +30,5 @@ final as (
     from fields
 )
 
-select * 
+select *
 from final

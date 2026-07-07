@@ -307,8 +307,6 @@ sources:
             description: The text content of the share.
           - name: container_entity
             description: URN of container entity that contains the share such as a Group or a Story.
-          - name: created_actor
-            description: User who created the share.
           - name: created_time
             description: Timestamp when the share was created.
           - name: distribution_external_distribution_channels
@@ -319,8 +317,6 @@ sources:
             description: The time at which this share was first published.
           - name: id
             description: Unique integer ID for this share.
-          - name: last_modified_actor
-            description: User who last modified the share.
           - name: last_modified_time
             description: Timestamp when the share was last modified.
           - name: lifecycle_state
