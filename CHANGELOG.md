@@ -1,3 +1,11 @@
+# dbt_linkedin_pages v1.5.1
+
+[PR #34](https://github.com/fivetran/dbt_linkedin_pages/pull/34) includes the following updates:
+
+## Feature Updates
+- Adds DuckDB as a supported destination.
+
+
 # dbt_linkedin_pages v1.5.0
 
 [PR #32](https://github.com/fivetran/dbt_linkedin_pages/pull/32) includes the following updates:
