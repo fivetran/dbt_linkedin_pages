@@ -3,6 +3,13 @@ version: 2
 models:
   - name: stg_linkedin_pages__organization_ugc_post
     description: Mapping table for organizations and UGC posts.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - organization_id
+              - ugc_post_id
     columns:
       - name: _fivetran_synced
         description: The timestamp of when the record was last synced by Fivetran
@@ -15,6 +22,12 @@ models:
 
   - name: stg_linkedin_pages__organization
     description: Each record represents an organization.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - organization_id
     columns:
       - name: organization_id
         description: Unique id for the organization
@@ -29,6 +42,12 @@ models:
 
   - name: stg_linkedin_pages__share_statistic
     description: Each record represents the performance of a Linkedin share.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - share_statistic_id
     columns:
       - name: share_statistic_id
         description: The Fivetran ID of the record
@@ -57,6 +76,13 @@ models:
 
   - name: stg_linkedin_pages__ugc_post_history
     description: Each record represents a version of a UGC post.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - ugc_post_id
+              - last_modified_timestamp
     columns:
       - name: _fivetran_synced
         description: The timestamp of when the record was last synced by Fivetran
@@ -85,6 +111,12 @@ models:
 
   - name: stg_linkedin_pages__ugc_post_share_statistic 
     description: Mapping table for organizations and UGC posts.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - share_statistic_id
     columns:
       - name: _fivetran_synced
         description: The timestamp of when the record was last synced by Fivetran
@@ -97,6 +129,13 @@ models:
 
   - name: stg_linkedin_pages__post_content
     description: Content of posts.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - ugc_post_urn
+              - _fivetran_id
     columns:
       - name: _fivetran_synced
         description: The timestamp of when the record was last synced by Fivetran
@@ -141,6 +180,13 @@ models:
 
   - name: stg_linkedin_pages__organization_share
     description: Mapping table between organizations and shares.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - organization_id
+              - share_id
     columns:
       - name: _fivetran_synced
         description: The timestamp of when the record was last synced by Fivetran
@@ -153,6 +199,13 @@ models:
 
   - name: stg_linkedin_pages__share_content
     description: Content of shares.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - share_id
+              - _fivetran_id
     columns:
       - name: _fivetran_synced
         description: The timestamp of when the record was last synced by Fivetran
@@ -199,6 +252,13 @@ models:
 
   - name: stg_linkedin_pages__share_history
     description: Each record represents a version of a share.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - share_id
+              - last_modified_timestamp
     columns:
       - name: _fivetran_synced
         description: The timestamp of when the record was last synced by Fivetran
@@ -227,6 +287,12 @@ models:
 
   - name: stg_linkedin_pages__share_share_statistic
     description: Mapping table between shares and share statistics.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - share_statistic_id
     columns:
       - name: _fivetran_synced
         description: The timestamp of when the record was last synced by Fivetran
