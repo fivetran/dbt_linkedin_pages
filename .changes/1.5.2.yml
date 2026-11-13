@@ -1,4 +1,5 @@
 version: 1.5.2
+pr_number: 37
 bug_fixes:
   - description: Corrects the `stg_linkedin_pages__organization` yml documentation so it matches the columns the model outputs.
     details:
