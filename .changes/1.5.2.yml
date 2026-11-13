@@ -1,0 +1,12 @@
+version: 1.5.2
+pr_number: 37
+bug_fixes:
+- description: Corrects the `stg_linkedin_pages__organization` yml documentation so
+    it matches the columns the model outputs.
+  details:
+  - Removes `name_localized`, `name_preferred_locale_country`, and `name_preferred_locale_language`,
+    which the model does not produce.
+  - Adds `organization_name`.
+  - Removes the column mismatch warning raised during `dbt run` when `persist_docs`
+    is enabled.
+date: '2026-11-13'

@@ -18,12 +18,8 @@ models:
     columns:
       - name: organization_id
         description: Unique id for the organization
-      - name: name_localized
+      - name: organization_name
         description: The localized name of the organization.
-      - name: name_preferred_locale_country
-        description: The preferred country of the organization.
-      - name: name_preferred_locale_language
-        description: The preferred language of the organization.
       - name: source_relation
         description: The source of the record, if the unioning functionality is being used.
 
