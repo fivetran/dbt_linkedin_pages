@@ -2,5 +2,14 @@ version: 1.6.0
 pr_number: 36
 new_features:
 - description: Raises the minimum supported dbt version from v1.3.0 to v1.10.0.
+bug_fixes:
+- description: Corrects the `stg_linkedin_pages__organization` yml documentation so
+    it matches the columns the model outputs.
+  details:
+  - Removes `name_localized`, `name_preferred_locale_country`, and `name_preferred_locale_language`,
+    which the model does not produce.
+  - Adds `organization_name`.
+  - Removes the column mismatch warning raised during `dbt run` when `persist_docs`
+    is enabled.
 under_the_hood:
 - description: Adds `dbt_utils.unique_combination_of_columns` tests to the staging and end models. The tests use the `arguments` syntax introduced in dbt v1.10.0, the new minimum supported version.

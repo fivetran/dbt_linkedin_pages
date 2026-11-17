@@ -1,3 +1,13 @@
+# dbt_linkedin_pages v1.5.2
+
+[PR #37](https://github.com/fivetran/dbt_linkedin_pages/pull/37) includes the following updates:
+
+## Bug Fix
+- Corrects the `stg_linkedin_pages__organization` yml documentation so it matches the columns the model outputs.
+  - Removes `name_localized`, `name_preferred_locale_country`, and `name_preferred_locale_language`, which the model does not produce.
+  - Adds `organization_name`.
+  - Removes the column mismatch warning raised during `dbt run` when `persist_docs` is enabled.
+
 # dbt_linkedin_pages v1.5.1
 
 [PR #34](https://github.com/fivetran/dbt_linkedin_pages/pull/34) includes the following updates:
