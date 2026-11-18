@@ -2,10 +2,15 @@ version: 1.6.0
 pr_number: 36
 new_features:
 - description: Raises the minimum dbt version to 1.10.0.
-- description: Adds `dbt_utils.unique_combination_of_columns` tests to staging and end models. If a test fails, please [open an issue](https://github.com/fivetran/dbt_linkedin_pages/issues/new/choose).
+- description: Adds `dbt_utils.unique_combination_of_columns` tests to staging and
+    end models. If a test fails, please [open an issue](https://github.com/fivetran/dbt_linkedin_pages/issues/new/choose).
 bug_fixes:
-- description: Corrects the `stg_linkedin_pages__organization` yml documentation so it matches the columns the model outputs.
+- description: Corrects the `stg_linkedin_pages__organization` yml documentation so
+    it matches the columns the model outputs.
   details:
-  - Removes `name_localized`, `name_preferred_locale_country`, and `name_preferred_locale_language`, which the model does not produce.
+  - Removes `name_localized`, `name_preferred_locale_country`, and `name_preferred_locale_language`,
+    which the model does not produce.
   - Adds `organization_name`.
-  - Removes the column mismatch warning raised during `dbt run` when `persist_docs` is enabled.
+  - Removes the column mismatch warning raised during `dbt run` when `persist_docs`
+    is enabled.
+date: '2026-11-18'
