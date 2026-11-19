@@ -4,8 +4,6 @@ new_features:
 - description: Raises the minimum dbt version to 1.10.0.
 - description: Adds `dbt_utils.unique_combination_of_columns` tests to staging and
     end models. If a test fails, please [open an issue](https://github.com/fivetran/dbt_linkedin_pages/issues/new/choose).
-Under the Hood:
-  details:
-  - Removes `name_localized`, `name_preferred_locale_country`, and `name_preferred_locale_language`, 
-    and adds `organization_name` to `stg_linkedin_pages.yml`.
+under_the_hood:
+- description: Updates yml column documentation to match model output.
 date: '2026-11-18'
