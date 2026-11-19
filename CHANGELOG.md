@@ -6,11 +6,8 @@
 - Raises the minimum dbt version to 1.10.0.
 - Adds `dbt_utils.unique_combination_of_columns` tests to staging and end models. If a test fails, please [open an issue](https://github.com/fivetran/dbt_linkedin_pages/issues/new/choose).
 
-## Bug Fix
-- Corrects the `stg_linkedin_pages__organization` yml documentation so it matches the columns the model outputs.
-  - Removes `name_localized`, `name_preferred_locale_country`, and `name_preferred_locale_language`, which the model does not produce.
-  - Adds `organization_name`.
-  - Removes the column mismatch warning raised during `dbt run` when `persist_docs` is enabled.
+## Under the Hood
+- Updates yml column documentation to match model output.
 
 # dbt_linkedin_pages v1.5.1
 
