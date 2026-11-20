@@ -77,7 +77,7 @@ models:
           arguments:
             combination_of_columns:
               - source_relation
-              - ugc_post_id
+              - ugc_post_urn
               - last_modified_timestamp
     columns:
       - name: _fivetran_synced
@@ -112,6 +112,7 @@ models:
           arguments:
             combination_of_columns:
               - source_relation
+              - ugc_post_id
               - share_statistic_id
     columns:
       - name: _fivetran_synced
@@ -288,6 +289,7 @@ models:
           arguments:
             combination_of_columns:
               - source_relation
+              - share_id
               - share_statistic_id
     columns:
       - name: _fivetran_synced
