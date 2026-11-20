@@ -51,7 +51,7 @@ models:
         description: The timestamp of when the record was last synced by Fivetran
       - name: organization_entity_urn
         description: The organizational entity URN for which the statistics represents.
-        tests:
+        data_tests:
           - not_null
       - name: share_entity_urn
         description: The share URN for describing individual share statistics. Is blank for aggregate share statistics.
